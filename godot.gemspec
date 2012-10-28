@@ -4,9 +4,9 @@ Gem::Specification.new do |s|
   s.name     = "godot"
   s.version  = Godot::VERSION
   s.platform = Gem::Platform::RUBY
-  s.homepage = "https://github.com/pivotal/godot"
+  s.homepage = "https://github.com/ohrite/godot"
   s.authors  = ["Doc Ritezel", "Matthew Kocher"]
-  s.email    = "commoncode+gems@pivotallabs.com"
+  s.email    = "ritezel+godot@pivotallabs.com"
   s.summary  = "The gem what makes waiting for stuff all easy-like."
   s.description   = "If you're going to be bored waiting for something, why not our good friend?"
 
