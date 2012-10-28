@@ -1,5 +1,8 @@
 # Godot
 
+[![Build Status](https://secure.travis-ci.org/ohrite/godot.png)](http://travis-ci.org/ohrite/godot)
+[![Dependency Status](https://gemnasium.com/ohrite/godot.png)](https://gemnasium.com/ohrite/godot)
+
 Introducing Godot, the gem what makes waiting for stuff all easy-like.
 
 
