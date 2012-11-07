@@ -42,7 +42,7 @@ class Godot
           Timeout.timeout(interval) do
             socket = TCPSocket.open(host, port)
           end
-        rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT, Timeout::Error, Errno::EHOSTUNREACH
+        rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT, Timeout::Error, Errno::EHOSTUNREACH, Errno::EHOSTDOWN
         end
       end
     end
