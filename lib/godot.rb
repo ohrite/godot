@@ -62,7 +62,7 @@ class Godot
   end
 
   def match(pattern, path = "", options = "-ks")
-    match!(pattern, options)
+    match!(pattern, path, options)
     true
   rescue Timeout::Error
     false
