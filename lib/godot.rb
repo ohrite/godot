@@ -3,7 +3,7 @@ require "socket"
 
 class Godot
   attr_reader :host, :port
-  attr_writer :interval, :timeout, :trace
+  attr_accessor :trace, :interval, :timeout
 
   def self.wait!(host, port)
     new(host, port).wait!
@@ -21,21 +21,12 @@ class Godot
     new(host, port).match(pattern, path, options)
   end
 
-  def initialize(host, port)
+  def initialize(host, port, options = {})
     @host = host
     @port = port
-  end
-
-  def interval
-    @interval || 1
-  end
-
-  def timeout
-    @timeout || 10
-  end
-
-  def trace
-    @trace
+    @interval = options[:interval] || 1
+    @trace = options[:trace] || false
+    @timeout = options[:timeout] || 10
   end
 
   def wait!
