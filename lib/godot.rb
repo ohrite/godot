@@ -30,8 +30,8 @@ class Godot
   end
 
   def wait!
+    socket = nil
     Timeout.timeout(timeout) do
-      socket = nil
       until socket
         begin
           Timeout.timeout(interval) do
@@ -42,6 +42,8 @@ class Godot
         end
       end
     end
+  ensure
+    socket.close if socket
   end
 
   def wait
