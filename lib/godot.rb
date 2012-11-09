@@ -3,7 +3,7 @@ require "socket"
 
 class Godot
   attr_reader :host, :port
-  attr_writer :interval, :timeout
+  attr_writer :interval, :timeout, :trace
 
   def self.wait!(host, port)
     new(host, port).wait!
@@ -34,6 +34,10 @@ class Godot
     @timeout || 10
   end
 
+  def trace
+    @trace
+  end
+
   def wait!
     Timeout.timeout(timeout) do
       socket = nil
@@ -42,7 +46,8 @@ class Godot
           Timeout.timeout(interval) do
             socket = TCPSocket.open(host, port)
           end
-        rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT, Timeout::Error, Errno::EHOSTUNREACH
+        rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT, Timeout::Error, Errno::EHOSTUNREACH, Errno::EHOSTDOWN
+          $stderr.putc "." if trace
         end
       end
     end
@@ -62,7 +67,7 @@ class Godot
   end
 
   def match(pattern, path = "", options = "-ks")
-    match!(pattern, options)
+    match!(pattern, path, options)
     true
   rescue Timeout::Error
     false
