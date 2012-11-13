@@ -1,3 +1,4 @@
+require "godot/version"
 require "timeout"
 require "socket"
 

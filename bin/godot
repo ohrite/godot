@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$:<< File.expand_path("../../lib", __FILE__)
+
+require "godot"
+
+case ARGV.length
+  when 1
+    Godot.wait(ARGV.first, 80)
+  when 2
+    Godot.wait(ARGV.first, ARGV[1])
+  when 3
+    Godot.match(ARGV.first, ARGV[1], ARGV[2], /.*/)
+  when 4
+    Godot.match(ARGV.first, ARGV[1], ARGV[2], /#{ARGV[3]}/)
+  else
+    puts "Godot #{Godot::VERSION}"
+    puts "godot host [port] [url] [matching text]"
+    false
+end || exit(1)
