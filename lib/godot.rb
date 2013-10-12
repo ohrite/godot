@@ -56,7 +56,7 @@ class Godot
 
   def match!(pattern, path = "", options = "-ks")
     Timeout.timeout(timeout) do
-      sleep interval until `curl #{options} http://#{host}:#{port}/#{path}` =~ pattern
+      sleep interval until curl(host, port, path, options) =~ pattern
     end
   end
 
@@ -65,5 +65,11 @@ class Godot
     true
   rescue Timeout::Error
     false
+  end
+
+  def curl(host, port, path, options)
+    `curl #{options} http://#{host}:#{port}/#{path}`.tap do |result|
+      $stderr.puts "\n>>>>>\n" + result + "\n<<<<<\n\n" if ENV['GODOT_DEBUG']
+    end
   end
 end
